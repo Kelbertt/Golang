@@ -2,6 +2,8 @@ package main
 
 import "fmt"
 
+
+
 func main() {
 	fmt.Println("Hello, world.")
 
@@ -16,12 +18,12 @@ func main() {
 
 	fmt.Println("i is set to", i)
 
-	whatWasSaid := saySomething()
+	whatWasSaid, TheOtherThing := saySomething()
 
-	fmt.Println("The function returned", whatWasSaid)
+	fmt.Println("The function returned", whatWasSaid, TheOtherThing)
 }
 
 
-func saySomething() string {
-	return "something"
+func saySomething() (string, string) {
+	return "something", "else"
 }
