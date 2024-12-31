@@ -19,9 +19,10 @@ func main() {
 	user := User {
 		FirstName: "Kaio",
 		LastName: "Rangel",
+		PhoneNumber: "22997644900",
 	}
 
-	log.Println(user.FirstName, user.LastName, "Birthdate", user.BirthDate )
+	log.Println(user.FirstName, user.LastName, "Birthdate", user.BirthDate, user.PhoneNumber )
 	
 
 	var s2 = "five"
