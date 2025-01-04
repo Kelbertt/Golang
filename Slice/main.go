@@ -21,4 +21,8 @@ func main() {
 	mySlice2 = append(mySlice2, 3)
 
 	log.Println(mySlice2)
+
+	numbers := []int{1,2,3,4,5,6,7,8,9,10}
+
+	log.Println(numbers[6:9])
 }
