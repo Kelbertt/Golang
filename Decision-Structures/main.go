@@ -22,5 +22,11 @@ func main()  {
 	}
 
 	
+	myNum := 100
+	isFalse := false
+
+	if myNum > 99 && !isFalse {
+		log.Println("myNum is greater than 99 and isFalse is set to true")
+	}
 
 }
