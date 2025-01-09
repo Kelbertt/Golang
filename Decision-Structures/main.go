@@ -13,4 +13,14 @@ func main()  {
 		log.Println("isTrue is", isTrue)
 	}
 
+	cat := "cat2"
+
+	if cat == "cat"{
+		log.Println("cat is", cat)
+	} else {
+		log.Println("cat is not cat")
+	}
+
+	
+
 }
