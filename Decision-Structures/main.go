@@ -1,7 +1,16 @@
 package main
 
-func ()  {
+import "log"
+
+func main()  {
 	
-	if 
-	
+	var isTrue bool
+	isTrue = false
+
+	if isTrue == true {
+		log.Println("isTrue is", isTrue)
+	} else {
+		log.Println("isTrue is", isTrue)
+	}
+
 }
