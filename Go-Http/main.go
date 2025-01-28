@@ -40,15 +40,16 @@ func (c *ContactService) Create(w http.ResponseWriter, r *http.Request) {
 
 func main() {
 
-	//service := &ContactService{Contacts:  make(map[int]Contact)}
+	service := &ContactService{Contacts:  make(map[int]Contact)}
 
 	mux := http.NewServeMux()
-
 
 	mux.HandleFunc("/contacts", func(w http.ResponseWriter, r *http.Request){
 		switch r.Method{
 		case http.MethodGet:
 			fmt.Fprintf(w, "Hello, %q", html.EscapeString(r.URL.Path) )
+		case http.MethodPost:
+			service.Create(w, r)
 		default:
 			http.Error(w, "Method not allowed", http.StatusMethodNotAllowed)
 		
