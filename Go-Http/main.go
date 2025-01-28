@@ -1,18 +1,33 @@
 package main
 
 import (
-	"io"
+	"fmt"
+	"html"
 	"log"
 	"net/http"
 )
 
+type Contact struct{
+	Id		int		`json:"id"`
+	Name	string	`json:"name"`
+	Email	string	`json:"email"`
+	Phone	string	`json:"phone"`
+}
+
+type ContactService	struct {
+	Contacts 	map[int]Contact
+}
+
 func main() {
-	// Hello world, the web server
 
-	helloHandler := func(w http.ResponseWriter, req *http.Request) {
-		io.WriteString(w, "Hello, world!\n")
-	}
+	service := &ContactService{Contacts:  make(map[int]Contact)}
 
-	http.HandleFunc("/hello", helloHandler)
-	log.Fatal(http.ListenAndServe(":8080", nil))
+	mux := http.NewServeMux()
+
+
+	mux.HandleFunc("/bar", func(w http.ResponseWriter, r *http.Request){
+		fmt.Fprintf(w, "Hello, %q", html.EscapeString(r.URL.Path))
+	})
+
+	log.Fatal(http.ListenAndServe(":8080",mux))
 }
