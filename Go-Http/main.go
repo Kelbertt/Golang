@@ -2,8 +2,6 @@ package main
 
 import (
 	"encoding/json"
-	"fmt"
-	"html"
 	"log"
 	"net/http"
 )
@@ -38,6 +36,17 @@ func (c *ContactService) Create(w http.ResponseWriter, r *http.Request) {
 	w.WriteHeader(http.StatusCreated)
 }
 
+func (c *ContactService) List(w http.ResponseWriter, r *http.Request){
+	w.Header().Set("Content-Type", "aplplication/json")
+	var contacts []Contact
+	
+	for _, ct := range c.Contacts	{
+		contacts = append(contacts, ct)
+	}
+
+	json.NewEncoder(w).Encode(contacts)
+}
+
 func main() {
 
 	service := &ContactService{Contacts:  make(map[int]Contact)}
@@ -47,7 +56,7 @@ func main() {
 	mux.HandleFunc("/contacts", func(w http.ResponseWriter, r *http.Request){
 		switch r.Method{
 		case http.MethodGet:
-			fmt.Fprintf(w, "Hello, %q", html.EscapeString(r.URL.Path) )
+			service.List(w, r)
 		case http.MethodPost:
 			service.Create(w, r)
 		default:
