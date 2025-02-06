@@ -83,6 +83,16 @@ func handleCreateContact(w http.ResponseWriter, r *http.Request, service *Contac
 	service.Create(w, r)
 }
 
+func handleDeleteContact(w http.ResponseWriter, r *http.Request, service *ContactService){
+	q := r.URL.Query()
+	if q.Get("id") != "" {
+		id, _ := strconv.Atoi(q.Get("id"))
+		service.Delete(w, r, id)
+	} else {
+		http.Error(w, "Contact Not Found", http.StatusNotFound)
+	}
+}
+
 func main() {
 
 	service := &ContactService{Contacts:  make(map[int]Contact)}
@@ -95,6 +105,8 @@ func main() {
 			handleGetContacts(w, r, service)
 		case http.MethodPost:
 			handleCreateContact(w, r, service)
+		case http.MethodDelete:
+			handleDeleteContact(w, r, service)
 		default:
 			http.Error(w, "Method not allowed", http.StatusMethodNotAllowed)
 		
