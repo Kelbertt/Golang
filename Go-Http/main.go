@@ -67,6 +67,11 @@ func handleGetContacts(w http.ResponseWriter, r *http.Request, service *ContactS
 		service.List(w, r)
 	}
 }
+
+func handleCreateContact(w http.ResponseWriter, r *http.Request, service *ContactService) {
+	service.Create(w, r)
+}
+
 func main() {
 
 	service := &ContactService{Contacts:  make(map[int]Contact)}
@@ -78,7 +83,7 @@ func main() {
 		case http.MethodGet:
 			handleGetContacts(w, r, service)
 		case http.MethodPost:
-			service.Create(w, r)
+			handleCreateContact(w, r, service)
 		default:
 			http.Error(w, "Method not allowed", http.StatusMethodNotAllowed)
 		
