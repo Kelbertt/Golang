@@ -111,8 +111,8 @@ func handleDeleteContact(w http.ResponseWriter, r *http.Request, service *Contac
 	}
 }
 
-func handleDeleteContact(w http.ResponseWriter, r *http.Request, service *ContactService) {
-	
+func handleUpdateContact(w http.ResponseWriter, r *http.Request, service *ContactService) {
+
 }
 
 
