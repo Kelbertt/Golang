@@ -58,6 +58,17 @@ func (c *ContactService) Get(w http.ResponseWriter, r *http.Request, id int) {
 	}
 }
 
+func  (c *ContactService) Delete(w http.ResponseWriter, r *http.Request, id int) {
+	w.Header().Set("Contact-Type", "application/json")
+
+	if _, ok := c.Contacts[id]; ok {
+		delete(c.Contacts, id)
+		w.WriteHeader(http.StatusOK)
+	} else {
+		http.Error (w, "COntact not found", http.StatusNotFound)
+	}
+}
+
 func handleGetContacts(w http.ResponseWriter, r *http.Request, service *ContactService){
 	q := r.URL.Query()
 	if q.Get("id") != "" {
