@@ -69,6 +69,24 @@ func  (c *ContactService) Delete(w http.ResponseWriter, r *http.Request, id int)
 	}
 }
 
+func (c *ContactService) Update(w http.ResponseWriter, r *http.Request, id int) {
+	w.Header().Set("Contact-Type", "application/json")
+
+	var contact Contact
+	err := json.NewDecoder(r.Body).Decode(&contact)
+	if err != nil {
+		http.Error(w, err.Error(), http.StatusBadRequest)
+		return
+	}
+
+	if _, ok := c.Contacts[id]; ok {
+		contact.Id = id
+		c.Contacts[id] = contact
+	} else {
+		http.Error(w, "Contact Not found", http.StatusNotFound)
+	}
+}
+
 func handleGetContacts(w http.ResponseWriter, r *http.Request, service *ContactService){
 	q := r.URL.Query()
 	if q.Get("id") != "" {
@@ -92,6 +110,11 @@ func handleDeleteContact(w http.ResponseWriter, r *http.Request, service *Contac
 		http.Error(w, "Contact Not Found", http.StatusNotFound)
 	}
 }
+
+func handleDeleteContact(w http.ResponseWriter, r *http.Request, service *ContactService) {
+	
+}
+
 
 func main() {
 
