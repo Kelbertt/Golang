@@ -112,7 +112,13 @@ func handleDeleteContact(w http.ResponseWriter, r *http.Request, service *Contac
 }
 
 func handleUpdateContact(w http.ResponseWriter, r *http.Request, service *ContactService) {
-
+	q := r.URL.Query()
+	if q.Get("id") != "" {
+		id, _ := strconv.Atoi(q.Get("id"))
+		service.Update(w, r, id)
+	} else {
+		http.Error(w, "Contact Not Found", http.StatusNotFound)
+	}
 }
 
 
