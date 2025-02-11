@@ -136,6 +136,8 @@ func main() {
 			handleCreateContact(w, r, service)
 		case http.MethodDelete:
 			handleDeleteContact(w, r, service)
+		case http.MethodPut:
+			handleUpdateContact(w, r, service)
 		default:
 			http.Error(w, "Method not allowed", http.StatusMethodNotAllowed)
 		
