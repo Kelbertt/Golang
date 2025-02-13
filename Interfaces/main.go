@@ -29,6 +29,13 @@ func (d *Dog) NumberofLegs() int {
 	return 4
 }
 
+func (d *Gorilla) Says() string {
+	return "Ugh"
+}
+
+func (d *Gorilla) NumberofLegs() int {
+	return 2
+}
 
 func main() {
 	dog := Dog{
@@ -37,4 +44,11 @@ func main() {
 	}
 
 	PrintInfo(&dog)
+
+	gorilla := Gorilla{
+		Name:  "Jorge",
+		Color: "Black",
+	}
+
+	PrintInfo(&gorilla)
 }
