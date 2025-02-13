@@ -4,9 +4,9 @@ import
 	"log"
 
 
-func main2() {
+func main() {
 
-	myVar := "cat"
+	myVar := "horse"
 
 	switch myVar {
 	case "cat":
